@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trigger Finder — Secure Edition</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #080c14; color: #c5c5d0; height: 100vh; overflow: hidden; }
+        .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url("background.jpg") no-repeat center center fixed; background-size: cover; z-index: -1; }
+
+        #authOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 12, 20, 0.95); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .auth-card { background: rgba(12, 18, 30, 0.95); border: 1px solid #1e3a5f; border-radius: 8px; padding: 30px; width: 380px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.7); }
+        .auth-card h2 { color: #fff; font-size: 18px; margin-bottom: 8px; }
+        .auth-card p { color: #7b8fae; font-size: 12px; margin-bottom: 20px; }
+        .auth-card input { width: 100%; padding: 10px; background: rgba(8, 12, 20, 0.9); border: 1px solid #1e3a5f; border-radius: 4px; color: #fff; margin-bottom: 15px; text-align: center; font-size: 14px; }
+        
+        #appContainer { display: none; flex-direction: column; height: 100vh; padding: 15px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .title h1 { font-size: 18px; color: #ffffff; }
+        .title p { font-size: 11px; color: #7b8fae; }
+        
+        .main-layout { display: flex; gap: 15px; flex: 1; overflow: hidden; }
+        .sidebar { width: 280px; background: rgba(8, 12, 20, 0.85); border: 1px solid #1e3a5f; border-radius: 6px; padding: 15px; display: flex; flex-direction: column; gap: 12px; }
+        .btn { background: rgba(12, 18, 30, 0.9); color: #00d2ff; border: 1px solid #00d2ff; padding: 9px; border-radius: 4px; font-weight: bold; cursor: pointer; text-align: center; }
+        .workspace { flex: 1; background: rgba(8, 12, 20, 0.85); border: 1px solid #1e3a5f; border-radius: 6px; padding: 15px; display: flex; flex-direction: column; overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #162c4a; font-size: 12px; }
+        th { background: rgba(15, 22, 35, 0.95); color: #fff; }
+        td { color: #c5c5d0; background: rgba(8, 12, 20, 0.75); }
+    </style>
+</head>
+<body>
+    <div class="bg-layer"></div>
+
+    <div id="authOverlay">
+        <div class="auth-card">
+            <h2>🔐 Secure Key Auth</h2>
+            <p>Enter your authorization token</p>
+            <input type="text" id="licenseKeyInput" placeholder="ENTER-KEY-HERE">
+            <button class="btn" style="width: 100%;" onclick="verifyKeySecurely()">Authenticate</button>
+            <p id="errorMsg" style="color: #ff4d4d; font-size: 11px; margin-top: 10px;"></p>
+        </div>
+    </div>
+
+    <div id="appContainer">
+        <header>
+            <div class="title">
+                <h1>🎯 TRIGGER FINDER</h1>
+                <p>Secure Protected Workspace</p>
+            </div>
+            <button class="btn" onclick="logout()" style="width: 100px; border-color: #ff4d4d; color: #ff4d4d;">LOGOUT</button>
+        </header>
+
+        <div class="main-layout">
+            <div class="sidebar">
+                <button class="btn" onclick="selectDirectory()">📁 BROWSE DUMP</button>
+                <p id="folderLabel" style="font-size: 11px; color: #7b8fae;"></p>
+            </div>
+            <div class="workspace">
+                <table>
+                    <thead><tr><th>Resource</th><th>Trigger</th><th>Snippet</th></tr></thead>
+                    <tbody id="resultsTable"><tr><td colspan="3" style="text-align: center;">Awaiting scan...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // On load, check token server-side session validity
+        window.onload = async function() {
+            const token = sessionStorage.getItem("secure_session_token");
+            if (token) {
+                await validateTokenWithServer(token, true);
+            }
+        };
+
+        async function verifyKeySecurely() {
+            const key = document.getElementById('licenseKeyInput').value.trim();
+            const errorLabel = document.getElementById('errorMsg');
+            if(!key) { errorLabel.innerText = "Key cannot be empty."; return; }
+
+            errorLabel.innerText = "Verifying with server...";
+
+            try {
+                // REPLACE THIS URL WITH YOUR ACTUAL LIVE BACKEND API ROUTE
+                const response = await fetch('https://your-backend-api.com/api/verify-key', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ license_key: key })
+                });
+                
+                const data = await response.json();
+                if(response.ok && data.success) {
+                    sessionStorage.setItem("secure_session_token", data.session_token);
+                    unlockApp();
+                } else {
+                    errorLabel.innerText = data.message || "Invalid or expired key.";
+                }
+            } catch (e) {
+                errorLabel.innerText = "Connection error to license server.";
+            }
+        }
+
+        async function validateTokenWithServer(token, auto = false) {
+            try {
+                const response = await fetch('https://your-backend-api.com/api/validate-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: token })
+                });
+                const data = await response.json();
+                if (response.ok && data.valid) {
+                    unlockApp();
+                } else {
+                    sessionStorage.removeItem("secure_session_token");
+                }
+            } catch(e) {
+                if(!auto) sessionStorage.removeItem("secure_session_token");
+            }
+        }
+
+        function unlockApp() {
+            document.getElementById('authOverlay').style.display = 'none';
+            document.getElementById('appContainer').style.display = 'flex';
+        }
+
+        function logout() {
+            sessionStorage.removeItem("secure_session_token");
+            location.reload();
+        }
+
+        async function selectDirectory() {
+            // Directory file system logic remains available client-side
+            const dirHandle = await window.showDirectoryPicker();
+            document.getElementById('folderLabel').innerText = dirHandle.name;
+        }
+    </script>
+</body>
+</html>
