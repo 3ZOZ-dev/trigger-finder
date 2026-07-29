@@ -153,14 +153,36 @@
     </div>
 
     <script>
-        // Configured with your KeyAuth credentials
         const KEYAUTH_NAME = "3zbh";
         const KEYAUTH_OWNERID = "wyZfWBaylR";
+        let sessionID = "";
 
-        // Keep user logged in during the browser session
-        window.onload = function() {
+        // Initialize KeyAuth session on page load
+        window.onload = async function() {
             if (sessionStorage.getItem("keyauth_verified") === "true") {
                 unlockApp();
+                return;
+            }
+
+            try {
+                const initData = new FormData();
+                initData.append("type", "init");
+                initData.append("name", KEYAUTH_NAME);
+                initData.append("ownerid", KEYAUTH_OWNERID);
+
+                const response = await fetch("https://keyauth.win/api/1.3/", {
+                    method: "POST",
+                    body: initData
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    sessionID = data.sessionid;
+                } else {
+                    document.getElementById('errorMsg').innerText = "Init Error: " + data.message;
+                }
+            } catch (err) {
+                document.getElementById('errorMsg').innerText = "Failed to connect to KeyAuth init API.";
             }
         };
 
@@ -173,11 +195,17 @@
                 return;
             }
 
+            if (!sessionID) {
+                errorMsg.innerText = "Session not initialized yet. Refresh the page.";
+                return;
+            }
+
             errorMsg.innerText = "Authenticating with KeyAuth...";
 
             const formData = new FormData();
             formData.append("type", "license");
             formData.append("key", key);
+            formData.append("sessionid", sessionID);
             formData.append("name", KEYAUTH_NAME);
             formData.append("ownerid", KEYAUTH_OWNERID);
 
