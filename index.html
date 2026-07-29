@@ -5,12 +5,35 @@
     <title>Trigger Finder — KeyAuth Secure Edition</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: #080c14; color: #c5c5d0; height: 100vh; overflow: hidden; }
-        .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url("background.jpg") no-repeat center center fixed; background-size: cover; z-index: -1; }
+        
+        /* --- ROOT WINDOW STYLING --- */
+        body {
+            /* 
+               FIX: Ensure background.jpg is in the same folder as this HTML file.
+               This CSS sets the background to be non-repeating, centered, and scaled 
+               to cover the entire viewport, even on large screens.
+            */
+            background: url('background.jpg') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            
+            /* Dark overlay color just in case the image fails to load */
+            background-color: #080c14;
+            color: #c5c5d0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /* Add a dark translucent overlay over the background for readability */
+            background-blend-mode: overlay;
+        }
 
         /* Auth Screen Overlay */
-        #authOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 12, 20, 0.95); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        .auth-card { background: rgba(12, 18, 30, 0.95); border: 1px solid #1e3a5f; border-radius: 8px; padding: 30px; width: 380px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.7); }
+        #authOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(8, 12, 20, 0.98); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .auth-card { background: rgba(16, 24, 40, 0.95); border: 1px solid #1e3a5f; border-radius: 8px; padding: 30px; width: 380px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.7); }
         .auth-card h2 { color: #fff; font-size: 18px; margin-bottom: 8px; }
         .auth-card p { color: #7b8fae; font-size: 12px; margin-bottom: 20px; }
         .auth-card input { width: 100%; padding: 10px; background: rgba(8, 12, 20, 0.9); border: 1px solid #1e3a5f; border-radius: 4px; color: #fff; margin-bottom: 15px; text-align: center; font-size: 14px; }
@@ -19,7 +42,7 @@
         /* Main Dashboard Container */
         #appContainer { display: none; flex-direction: column; height: 100vh; padding: 15px; }
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .title h1 { font-size: 18px; color: #ffffff; letter-spacing: 1px; }
+        .title h1 { font-size: 18px; color: #ffffff; letter-spacing: 1px; font-weight: bold;}
         .title p { font-size: 11px; color: #7b8fae; }
         
         .banner {
@@ -36,7 +59,7 @@
         .main-layout { display: flex; gap: 15px; flex: 1; overflow: hidden; }
         
         .sidebar {
-            width: 280px;
+            width: 260px;
             background: rgba(8, 12, 20, 0.85);
             border: 1px solid #1e3a5f;
             border-radius: 6px;
@@ -45,7 +68,7 @@
             flex-direction: column;
             gap: 12px;
         }
-        .sidebar label { font-size: 10px; font-weight: bold; color: #7b8fae; }
+        .sidebar label { font-size: 10px; font-weight: bold; color: #7b8fae; text-transform: uppercase;}
         
         .btn {
             background: rgba(12, 18, 30, 0.9);
@@ -57,6 +80,8 @@
             cursor: pointer;
             text-align: center;
             font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .btn:hover { background: rgba(0, 210, 255, 0.15); }
 
@@ -70,6 +95,9 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
+        }
+        .stats-box span {
+            font-family: monospace;
         }
 
         .workspace {
@@ -86,14 +114,12 @@
         .table-container { overflow-y: auto; flex: 1; margin-top: 10px; border: 1px solid #162c4a; border-radius: 4px; }
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 10px; text-align: left; border-bottom: 1px solid #162c4a; font-size: 12px; }
-        th { background: rgba(15, 22, 35, 0.95); color: #fff; position: sticky; top: 0; }
+        th { background: rgba(15, 22, 35, 0.95); color: #fff; position: sticky; top: 0; text-transform: uppercase;}
         td { color: #c5c5d0; background: rgba(8, 12, 20, 0.75); }
-        code { color: #00d2ff; font-family: monospace; }
+        code { color: #00d2ff; font-family: monospace; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 3px;}
     </style>
 </head>
 <body>
-
-    <div class="bg-layer"></div>
 
     <!-- KEYAUTH LOGIN OVERLAY -->
     <div id="authOverlay">
@@ -110,7 +136,7 @@
     <div id="appContainer">
         <header>
             <div class="title">
-                <h1>🎯 TRIGGER FINDER</h1>
+                <h1>TRIGGER FINDER</h1>
                 <p>FiveM Server Analysis Tool (KeyAuth Protected)</p>
             </div>
             <button class="btn" onclick="logout()" style="width: 90px; border-color: #ff4d4d; color: #ff4d4d;">LOGOUT</button>
@@ -122,9 +148,9 @@
             <div class="sidebar">
                 <label>SELECT SERVER DUMP FOLDER</label>
                 <button class="btn" onclick="selectDirectory()">📁 BROWSE DIRECTORY</button>
-                <p id="folderLabel" style="font-size: 11px; color: #7b8fae; word-break: break-all;"></p>
+                <p id="folderLabel" style="font-size: 11px; color: #7b8fae; word-break: break-all; margin-top: 5px;"></p>
 
-                <label style="margin-top: 10px;">QUICK STATS</label>
+                <label style="margin-top: 15px;">QUICK STATS</label>
                 <div class="stats-box">
                     <span id="statTriggers">🎯 TOTAL TRIGGERS: 0</span>
                     <span id="statWebhooks">🔗 WEBHOOKS: 0</span>
@@ -132,7 +158,7 @@
             </div>
 
             <div class="workspace">
-                <h3 style="font-size: 14px; color: #00d2ff; margin-bottom: 5px;">Discovered Triggers Explorer</h3>
+                <h3 style="font-size: 14px; color: #00d2ff; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Discovered Triggers Explorer</h3>
                 <div class="table-container">
                     <table>
                         <thead>
@@ -153,6 +179,7 @@
     </div>
 
     <script>
+        // Configured with your KeyAuth credentials
         const KEYAUTH_NAME = "3zbh";
         const KEYAUTH_OWNERID = "wyZfWBaylR";
         let sessionID = "";
@@ -314,14 +341,4 @@
                             <td>${item.resource}</td>
                             <td style="color: #00d2ff; font-weight: bold;">${item.trigger}</td>
                             <td><code>${item.snippet}</code></td>
-                            <td>${item.file} (Line ${item.line})</td>
-                        </tr>`;
-                    });
-                }
-            } catch (err) {
-                console.log("User cancelled folder picker");
-            }
-        }
-    </script>
-</body>
-</html>
+                            <td>${item.file} (Line${item.line})</td>
