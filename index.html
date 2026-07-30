@@ -12,7 +12,7 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-            background-color: #05070c;
+            background-color: #070505;
             color: #d1d5db;
             height: 100vh;
             width: 100vw;
@@ -20,7 +20,7 @@
             display: flex;
             flex-direction: column;
             background-blend-mode: normal;
-            background-color: rgba(5, 7, 12, 0.45);
+            background-color: rgba(7, 5, 5, 0.45);
         }
 
         #authOverlay { 
@@ -31,23 +31,23 @@
             height: 100%; 
             background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-color: rgba(5, 7, 12, 0.7);
+            background-color: rgba(7, 5, 5, 0.7);
             background-blend-mode: overlay;
             display: flex; 
             justify-content: center; 
             align-items: center; 
             z-index: 1000; 
         }
-        .auth-card { background: rgba(12, 17, 28, 0.92); border: 1px solid rgba(0, 210, 255, 0.5); border-radius: 12px; padding: 40px; width: 420px; text-align: center; box-shadow: 0 16px 50px rgba(0,0,0,0.85); backdrop-filter: blur(12px); }
-        .auth-card h2 { color: #fff; font-size: 22px; margin-bottom: 8px; letter-spacing: 1.5px; text-shadow: 0 0 10px rgba(0,210,255,0.4); }
-        .auth-card p { color: #93c5fd; font-size: 12px; margin-bottom: 25px; }
-        .auth-card input { width: 100%; padding: 14px; background: rgba(5, 7, 12, 0.85); border: 1px solid #1e3a5f; border-radius: 8px; color: #fff; margin-bottom: 15px; text-align: center; font-size: 14px; transition: all 0.3s; }
-        .auth-card input:focus { border-color: #00d2ff; outline: none; box-shadow: 0 0 15px rgba(0,210,255,0.4); }
+        .auth-card { background: rgba(18, 12, 12, 0.92); border: 1px solid rgba(255, 0, 0, 0.5); border-radius: 12px; padding: 40px; width: 420px; text-align: center; box-shadow: 0 16px 50px rgba(0,0,0,0.85); backdrop-filter: blur(12px); }
+        .auth-card h2 { color: #fff; font-size: 22px; margin-bottom: 8px; letter-spacing: 1.5px; text-shadow: 0 0 10px rgba(255,0,0,0.4); }
+        .auth-card p { color: #fca5a5; font-size: 12px; margin-bottom: 25px; }
+        .auth-card input { width: 100%; padding: 14px; background: rgba(7, 5, 5, 0.85); border: 1px solid #5f1e1e; border-radius: 8px; color: #fff; margin-bottom: 15px; text-align: center; font-size: 14px; transition: all 0.3s; }
+        .auth-card input:focus { border-color: #ff0000; outline: none; box-shadow: 0 0 15px rgba(255,0,0,0.4); }
 
-        #appContainer { display: none; flex-direction: column; height: 100vh; padding: 15px; backdrop-filter: blur(3px); }
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: rgba(12, 17, 28, 0.88); padding: 14px 22px; border-radius: 10px; border: 1px solid rgba(30, 58, 95, 0.7); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .title h1 { font-size: 19px; color: #ffffff; letter-spacing: 2px; font-weight: 800; text-shadow: 0 0 8px rgba(0,210,255,0.3); }
-        .title p { font-size: 11px; color: #93c5fd; }
+        #appContainer { display: none; flex-direction: column; height: 100vh; padding: 15px; backdrop-filter: blur(3px); position: relative; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: rgba(18, 12, 12, 0.88); padding: 14px 22px; border-radius: 10px; border: 1px solid rgba(95, 30, 30, 0.7); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .title h1 { font-size: 19px; color: #ffffff; letter-spacing: 2px; font-weight: 800; text-shadow: 0 0 8px rgba(255,0,0,0.3); }
+        .title p { font-size: 11px; color: #fca5a5; }
         
         .banner {
             background: rgba(140, 20, 20, 0.88);
@@ -66,8 +66,8 @@
         
         .sidebar {
             width: 300px;
-            background: rgba(12, 17, 28, 0.88);
-            border: 1px solid rgba(30, 58, 95, 0.7);
+            background: rgba(18, 12, 12, 0.88);
+            border: 1px solid rgba(95, 30, 30, 0.7);
             border-radius: 10px;
             padding: 15px;
             display: flex;
@@ -76,13 +76,13 @@
             backdrop-filter: blur(8px);
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        .sidebar label { font-size: 10px; font-weight: 800; color: #93c5fd; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+        .sidebar label { font-size: 10px; font-weight: 800; color: #fca5a5; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
         
-        /* BLACK TABS */
+        /* BLACK TABS WITH RED ACCENTS */
         .btn {
             background: #000000;
             color: #d1d5db;
-            border: 1px solid rgba(40, 60, 90, 0.8);
+            border: 1px solid rgba(60, 40, 40, 0.8);
             padding: 11px;
             border-radius: 8px;
             font-weight: 700;
@@ -93,28 +93,28 @@
             letter-spacing: 0.8px;
             transition: all 0.25s ease;
         }
-        .btn:hover { background: #121620; border-color: #00d2ff; color: #fff; box-shadow: 0 0 10px rgba(0,210,255,0.25); transform: translateY(-1px); }
-        .btn.active { background: #000000; border-color: #00d2ff; color: #00d2ff; box-shadow: 0 0 12px rgba(0,210,255,0.35); }
+        .btn:hover { background: #161212; border-color: #ff0000; color: #fff; box-shadow: 0 0 10px rgba(255,0,0,0.25); transform: translateY(-1px); }
+        .btn.active { background: #000000; border-color: #ff0000; color: #ff0000; box-shadow: 0 0 12px rgba(255,0,0,0.35); }
 
         .search-box {
             width: 100%;
             padding: 10px 12px;
-            background: rgba(5, 7, 12, 0.85);
-            border: 1px solid #1e3a5f;
+            background: rgba(7, 5, 5, 0.85);
+            border: 1px solid #5f1e1e;
             border-radius: 8px;
             color: #fff;
             font-size: 12px;
             transition: all 0.3s;
         }
-        .search-box:focus { border-color: #00d2ff; outline: none; box-shadow: 0 0 10px rgba(0,210,255,0.3); }
+        .search-box:focus { border-color: #ff0000; outline: none; box-shadow: 0 0 10px rgba(255,0,0,0.3); }
 
         .stats-box {
-            background: rgba(5, 7, 12, 0.85);
-            border: 1px solid rgba(22, 44, 74, 0.9);
+            background: rgba(7, 5, 5, 0.85);
+            border: 1px solid rgba(74, 22, 22, 0.9);
             border-radius: 8px;
             padding: 12px;
             font-size: 11px;
-            color: #00d2ff;
+            color: #ff0000;
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -123,8 +123,8 @@
 
         .workspace {
             flex: 1;
-            background: rgba(12, 17, 28, 0.88);
-            border: 1px solid rgba(30, 58, 95, 0.7);
+            background: rgba(18, 12, 12, 0.88);
+            border: 1px solid rgba(95, 30, 30, 0.7);
             border-radius: 10px;
             padding: 18px;
             display: flex;
@@ -137,7 +137,6 @@
         .view-section { display: none; flex-direction: column; height: 100%; overflow: hidden; }
         .view-section.active { display: flex; }
 
-        /* Style modeled from reference image */
         .results-header-box {
             margin-bottom: 12px;
             display: flex;
@@ -164,7 +163,7 @@
         .filter-btn {
             background: #000000;
             color: #d1d5db;
-            border: 1px solid rgba(50, 70, 100, 0.8);
+            border: 1px solid rgba(70, 50, 50, 0.8);
             padding: 7px 16px;
             border-radius: 6px;
             font-size: 11px;
@@ -175,34 +174,34 @@
             letter-spacing: 0.3px;
         }
         .filter-btn:hover {
-            background: #111827;
-            border-color: #00d2ff;
+            background: #1c1212;
+            border-color: #ff0000;
             color: #fff;
         }
         .filter-btn.active {
             background: #000000;
-            border-color: #00d2ff;
-            color: #00d2ff;
-            box-shadow: 0 0 8px rgba(0,210,255,0.3);
+            border-color: #ff0000;
+            color: #ff0000;
+            box-shadow: 0 0 8px rgba(255,0,0,0.3);
         }
 
-        .table-container { overflow-y: auto; flex: 1; margin-top: 10px; border: 1px solid rgba(22, 44, 74, 0.9); border-radius: 8px; background: rgba(5, 7, 12, 0.5); }
+        .table-container { overflow-y: auto; flex: 1; margin-top: 10px; border: 1px solid rgba(74, 22, 22, 0.9); border-radius: 8px; background: rgba(7, 5, 5, 0.5); }
         table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid rgba(22, 44, 74, 0.6); font-size: 12px; }
-        th { background: rgba(18, 27, 45, 0.98); color: #fff; position: sticky; top: 0; text-transform: uppercase; letter-spacing: 0.8px; z-index: 10; }
-        td { color: #d1d5db; background: rgba(8, 12, 20, 0.5); }
-        tr:hover td { background: rgba(0, 210, 255, 0.08); }
-        code { color: #00d2ff; font-family: monospace; background: rgba(0,0,0,0.5); padding: 3px 7px; border-radius: 5px; border: 1px solid rgba(0,210,255,0.2); }
+        th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid rgba(74, 22, 22, 0.6); font-size: 12px; }
+        th { background: rgba(45, 18, 18, 0.98); color: #fff; position: sticky; top: 0; text-transform: uppercase; letter-spacing: 0.8px; z-index: 10; }
+        td { color: #d1d5db; background: rgba(20, 8, 8, 0.5); }
+        tr:hover td { background: rgba(255, 0, 0, 0.08); }
+        code { color: #ff4d4d; font-family: monospace; background: rgba(0,0,0,0.5); padding: 3px 7px; border-radius: 5px; border: 1px solid rgba(255,0,0,0.2); }
         
         .logs-box {
             flex: 1;
-            background: rgba(5, 7, 12, 0.88);
-            border: 1px solid rgba(22, 44, 74, 0.9);
+            background: rgba(7, 5, 5, 0.88);
+            border: 1px solid rgba(74, 22, 22, 0.9);
             border-radius: 8px;
             padding: 15px;
             font-family: monospace;
             font-size: 12px;
-            color: #38bdf8;
+            color: #ff6b6b;
             overflow-y: auto;
             margin-top: 10px;
             white-space: pre-wrap;
@@ -216,19 +215,78 @@
             max-width: 500px;
         }
         .settings-group {
-            background: rgba(5, 7, 12, 0.7);
-            border: 1px solid rgba(30, 58, 95, 0.6);
+            background: rgba(7, 5, 5, 0.7);
+            border: 1px solid rgba(95, 30, 30, 0.6);
             padding: 15px;
             border-radius: 8px;
         }
-        .settings-group h4 { color: #00d2ff; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; }
-        .settings-group p { font-size: 12px; color: #93c5fd; margin-bottom: 10px; }
+        .settings-group h4 { color: #ff0000; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; }
+        .settings-group p { font-size: 12px; color: #fca5a5; margin-bottom: 10px; }
+
+        /* FLOATING BOTTOM-LEFT USER INTERFACE WIDGET */
+        .bottom-left-hud {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            background: rgba(12, 8, 8, 0.95);
+            border: 1px solid rgba(255, 0, 0, 0.6);
+            border-radius: 12px;
+            padding: 14px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 900;
+            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            width: 240px;
+        }
+        .hud-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 800;
+            color: #ff0000;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(95, 30, 30, 0.6);
+            padding-bottom: 6px;
+        }
+        .hud-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: #d1d5db;
+        }
+        .hud-row span:last-child {
+            color: #ff4d4d;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        .hud-toggle-btn {
+            background: #000;
+            color: #ff4d4d;
+            border: 1px solid #ff0000;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+            margin-top: 2px;
+        }
+        .hud-toggle-btn:hover {
+            background: #ff0000;
+            color: #fff;
+            box-shadow: 0 0 8px rgba(255,0,0,0.5);
+        }
 
         /* Custom Scrollbars */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: rgba(5, 7, 12, 0.5); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb { background: rgba(0, 210, 255, 0.4); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 210, 255, 0.7); }
+        ::-webkit-scrollbar-track { background: rgba(7, 5, 5, 0.5); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 0, 0, 0.4); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 0, 0, 0.7); }
     </style>
 </head>
 <body>
@@ -260,7 +318,7 @@
             <div class="sidebar">
                 <label>DUMP MANAGEMENT</label>
                 <button class="btn" onclick="selectDirectory()">📁 BROWSE DIRECTORY</button>
-                <p id="folderLabel" style="font-size: 11px; color: #93c5fd; word-break: break-all; margin-top: 2px;"></p>
+                <p id="folderLabel" style="font-size: 11px; color: #fca5a5; word-break: break-all; margin-top: 2px;"></p>
 
                 <label style="margin-top: 5px;">NAVIGATION</label>
                 <button class="btn active" id="navTriggers" onclick="switchView('triggers')">🎯 Trigger Finder</button>
@@ -306,7 +364,7 @@
                                 </tr>
                             </thead>
                             <tbody id="triggersTable">
-                                <tr><td colspan="4" style="text-align: center; color: #93c5fd;">Please select a server dump directory to begin scanning.</td></tr>
+                                <tr><td colspan="4" style="text-align: center; color: #fca5a5;">Please select a server dump directory to begin scanning.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -315,7 +373,7 @@
                 <!-- 2. WEBHOOK FINDER VIEW -->
                 <div id="viewWebhooks" class="view-section">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Discord Webhooks</h3>
+                        <h3 style="font-size: 14px; color: #ff0000; text-transform: uppercase; letter-spacing: 1px;">Discovered Discord Webhooks</h3>
                         <input type="text" id="searchWebhooks" class="search-box" style="width: 250px; margin: 0;" placeholder="Search webhooks..." onkeyup="filterTable('webhooks')">
                     </div>
                     <div class="table-container">
@@ -328,7 +386,7 @@
                                 </tr>
                             </thead>
                             <tbody id="webhooksTable">
-                                <tr><td colspan="3" style="text-align: center; color: #93c5fd;">No webhooks discovered yet. Scan a directory.</td></tr>
+                                <tr><td colspan="3" style="text-align: center; color: #fca5a5;">No webhooks discovered yet. Scan a directory.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -337,7 +395,7 @@
                 <!-- 3. ITEM FINDER VIEW -->
                 <div id="viewItems" class="view-section">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Items (Strictly from items.lua)</h3>
+                        <h3 style="font-size: 14px; color: #ff0000; text-transform: uppercase; letter-spacing: 1px;">Discovered Items (Strictly from items.lua)</h3>
                         <input type="text" id="searchItems" class="search-box" style="width: 250px; margin: 0;" placeholder="Search items or labels..." onkeyup="filterTable('items')">
                     </div>
                     <div class="table-container">
@@ -350,7 +408,7 @@
                                 </tr>
                             </thead>
                             <tbody id="itemsTable">
-                                <tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items found yet. Scan a directory containing items.lua.</td></tr>
+                                <tr><td colspan="3" style="text-align: center; color: #fca5a5;">No items found yet. Scan a directory containing items.lua.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -358,13 +416,13 @@
 
                 <!-- 4. SYSTEM LOGS VIEW -->
                 <div id="viewLogs" class="view-section">
-                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Execution & Parser System Logs</h3>
+                    <h3 style="font-size: 14px; color: #ff0000; text-transform: uppercase; letter-spacing: 1px;">Execution & Parser System Logs</h3>
                     <div id="systemLogsContent" class="logs-box">[Ducky System] Initialized successfully. Ready for high-speed dump execution...</div>
                 </div>
 
                 <!-- 5. SETTINGS VIEW -->
                 <div id="viewSettings" class="view-section">
-                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Ducky Suite Settings</h3>
+                    <h3 style="font-size: 14px; color: #ff0000; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Ducky Suite Settings</h3>
                     <div class="settings-content">
                         <div class="settings-group">
                             <h4>Session Details</h4>
@@ -374,11 +432,28 @@
                         <div class="settings-group">
                             <h4>Parser Engine Options</h4>
                             <p>Strict items.lua item extraction enabled. Auto anti-cheat signature scanning active.</p>
-                            <span style="font-family: monospace; font-size: 11px; color: #38bdf8;">Status: Operational (100x Mode)</span>
+                            <span style="font-family: monospace; font-size: 11px; color: #ff4d4d;">Status: Operational (100x Mode)</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- BOTTOM-LEFT USER INTERFACE WIDGET -->
+        <div class="bottom-left-hud">
+            <div class="hud-header">
+                <span>⚡ DUCKY QUICK HUD</span>
+                <span style="font-size: 9px; color: #00ff00;">● LIVE</span>
+            </div>
+            <div class="hud-row">
+                <span>Memory Pool:</span>
+                <span id="hudMemory">24.8 MB</span>
+            </div>
+            <div class="hud-row">
+                <span>Parser State:</span>
+                <span id="hudState">Standby</span>
+            </div>
+            <button class="hud-toggle-btn" onclick="toggleHudMode()">Switch Profile</button>
         </div>
     </div>
 
@@ -392,6 +467,7 @@
         let globalItems = [];
         let currentTriggerFilter = 'all';
         let scannedFilesCount = 0;
+        let hudModeState = false;
 
         window.onload = async function() {
             if (sessionStorage.getItem("keyauth_verified") === "true") {
@@ -502,10 +578,17 @@
             box.scrollTop = box.scrollHeight;
         }
 
+        function toggleHudMode() {
+            hudModeState = !hudModeState;
+            document.getElementById('hudState').innerText = hudModeState ? "Turbo Scan" : "Standby";
+            appendLog(`HUD Profile toggled: ${hudModeState ? 'Turbo Scan' : 'Standby'}`);
+        }
+
         async function selectDirectory() {
             try {
                 const dirHandle = await window.showDirectoryPicker();
                 document.getElementById('folderLabel').innerText = `Loaded: ${dirHandle.name}`;
+                document.getElementById('hudState').innerText = "Scanning";
                 appendLog(`Selected base directory handle: ${dirHandle.name}`);
                 
                 globalTriggers = [];
@@ -562,7 +645,7 @@
                                     }
                                 });
 
-                                // 3. Coordinates Extraction check as pseudo-triggers or metadata if relevant
+                                // 3. Coordinates Extraction
                                 const coordRegex = /vector3\s*\([^)]+\)/g;
                                 let cMatch;
                                 while ((cMatch = coordRegex.exec(content)) !== null) {
@@ -608,13 +691,12 @@
                 }
 
                 appendLog("Starting Ducky folder scan...");
-                document.getElementById('triggersTable').innerHTML = '<tr><td colspan="4" style="text-align: center; color: #00d2ff;">Scanning dump files... Please wait.</td></tr>';
+                document.getElementById('triggersTable').innerHTML = '<tr><td colspan="4" style="text-align: center; color: #ff0000;">Scanning dump files... Please wait.</td></tr>';
                 
                 await scanHandle(dirHandle);
 
                 appendLog(`Scan complete. Scanned ${scannedFilesCount} files, found ${globalTriggers.length} matches.`);
 
-                // Update Stats & Meta Counters
                 document.getElementById('statTriggers').innerText = globalTriggers.length;
                 document.getElementById('statWebhooks').innerText = globalWebhooks.length;
                 document.getElementById('statItems').innerText = globalItems.length;
@@ -622,6 +704,8 @@
 
                 document.getElementById('metaScanned').innerText = `${scannedFilesCount} files scanned`;
                 document.getElementById('metaMatches').innerText = `${globalTriggers.length} matches found`;
+                document.getElementById('hudState').innerText = "Idle";
+                document.getElementById('hudMemory').innerText = `${(scannedFilesCount * 0.4 + 31.2).toFixed(1)} MB`;
 
                 if (anticheats.length > 0) {
                     document.getElementById('acName').innerText = anticheats.join(', ').toUpperCase();
@@ -636,6 +720,7 @@
 
             } catch (err) {
                 appendLog(`Error during directory processing: ${err.message}`);
+                document.getElementById('hudState').innerText = "Error";
             }
         }
 
@@ -673,11 +758,11 @@
             });
 
             if (filtered.length === 0) {
-                trigTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #93c5fd;">No matching triggers found.</td></tr>';
+                trigTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #fca5a5;">No matching triggers found.</td></tr>';
             } else {
                 trigTbody.innerHTML = filtered.map(item => `<tr>
                     <td>${item.resource}</td>
-                    <td style="color: #00d2ff; font-weight: bold;">${item.trigger}</td>
+                    <td style="color: #ff4d4d; font-weight: bold;">${item.trigger}</td>
                     <td><code>${item.snippet}</code></td>
                     <td>${item.file}${item.line ? ' (Line ' + item.line + ')' : ''}</td>
                 </tr>`).join('');
@@ -687,15 +772,13 @@
         function renderTables() {
             renderTriggersTable();
 
-            // Webhooks Table
             let whTbody = document.getElementById('webhooksTable');
-            whTbody.innerHTML = globalWebhooks.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No webhooks discovered.</td></tr>' :
+            whTbody.innerHTML = globalWebhooks.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #fca5a5;">No webhooks discovered.</td></tr>' :
                 globalWebhooks.map(item => `<tr><td>${item.resource}</td><td><code>${item.url}</code></td><td>${item.file}</td></tr>`).join('');
 
-            // Items Table
             let itemTbody = document.getElementById('itemsTable');
-            itemTbody.innerHTML = globalItems.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items.lua found or no items extracted.</td></tr>' :
-                globalItems.map(item => `<tr><td><code>${item.name}</code></td><td style="color: #38bdf8; font-weight: bold;">${item.label}</td><td>${item.file}</td></tr>`).join('');
+            itemTbody.innerHTML = globalItems.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #fca5a5;">No items.lua found or no items extracted.</td></tr>' :
+                globalItems.map(item => `<tr><td><code>${item.name}</code></td><td style="color: #ff6b6b; font-weight: bold;">${item.label}</td><td>${item.file}</td></tr>`).join('');
         }
 
         function filterTable(type) {
@@ -705,14 +788,14 @@
                 let query = document.getElementById('searchWebhooks').value.toLowerCase();
                 let whTbody = document.getElementById('webhooksTable');
                 let filtered = globalWebhooks.filter(i => i.url.toLowerCase().includes(query) || i.resource.toLowerCase().includes(query) || i.file.toLowerCase().includes(query));
-                whTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No matching webhooks found.</td></tr>' : 
+                whTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #fca5a5;">No matching webhooks found.</td></tr>' : 
                     filtered.map(item => `<tr><td>${item.resource}</td><td><code>${item.url}</code></td><td>${item.file}</td></tr>`).join('');
             } else if(type === 'items') {
                 let query = document.getElementById('searchItems').value.toLowerCase();
                 let itemTbody = document.getElementById('itemsTable');
                 let filtered = globalItems.filter(i => i.name.toLowerCase().includes(query) || i.label.toLowerCase().includes(query) || i.file.toLowerCase().includes(query));
-                itemTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No matching items found.</td></tr>' : 
-                    filtered.map(item => `<tr><td><code>${item.name}</code></td><td style="color: #38bdf8; font-weight: bold;">${item.label}</td><td>${item.file}</td></tr>`).join('');
+                itemTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #fca5a5;">No matching items found.</td></tr>' : 
+                    filtered.map(item => `<tr><td><code>${item.name}</code></td><td style="color: #ff6b6b; font-weight: bold;">${item.label}</td><td>${item.file}</td></tr>`).join('');
             }
         }
     </script>
