@@ -231,18 +231,18 @@
 
                 <!-- 3. ITEM FINDER VIEW -->
                 <div id="viewItems" class="view-section">
-                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Inventory Items (qb-core / shared / items.lua)</h3>
+                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Items (Strictly from items.lua)</h3>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Item Code / Name</th>
+                                    <th>Item Name</th>
                                     <th>Item Label</th>
                                     <th>Source File Path</th>
                                 </tr>
                             </thead>
                             <tbody id="itemsTable">
-                                <tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items found yet. Scan a directory.</td></tr>
+                                <tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items found yet. Scan a directory containing items.lua.</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -422,27 +422,35 @@
                                     }
                                 });
 
-                                // 3. Enhanced QBCore / ESX Items parser targeting shared/items.lua or table entries
-                                const isItemsFile = subPath.toLowerCase().includes('items.lua') || subPath.toLowerCase().includes('shared/items');
-                                if (isItemsFile || content.includes('[')) {
-                                    // Matches Lua table structures like: ['bread'] = { ['name'] = 'bread', ['label'] = 'Bread', ... } or similar configurations
-                                    const luaTableItemRegex = /['"]?([a-zA-Z0-9_.-]+)['"]?\s*=\s*\{\s*(?:\[?['"]?name['"]?\]?\s*=\s*['"]?([a-zA-Z0-9_.-]+['"]?))?[^}]*?['"]?label['"]?\s*=\s*['"]([^'"]+)['"]/g;
+                                // 3. STRICT ITEMS.LUA PARSER ONLY
+                                const fileNameLower = entry.name.toLowerCase();
+                                if (fileNameLower === 'items.lua') {
+                                    appendLog(`Found items file: ${subPath}`);
+                                    
+                                    // Match patterns like: ['bread'] = { ... label = 'Bread' ... } or [\"bread\"] = { ... }
+                                    // Or entries matching QBCore Shared Items layout strictly inside items.lua
+                                    const itemEntryRegex = /\[['"]([a-zA-Z0-9_.-]+)['"]\]\s*=\s*\{([^}]*)\}/g;
                                     let matchItem;
-                                    while ((matchItem = luaTableItemRegex.exec(content)) !== null) {
-                                        const itemName = matchItem[2] || matchItem[1];
-                                        const itemLabel = matchItem[3];
-                                        if (itemName && itemLabel && !items.some(i => i.name === itemName)) {
+                                    while ((matchItem = itemEntryRegex.exec(content)) !== null) {
+                                        const itemName = matchItem[1];
+                                        const itemBlock = matchItem[2];
+                                        
+                                        // Extract label inside this item block
+                                        const labelMatch = itemBlock.match(/label\s*=\s*['"]([^'"]+)['"]/i);
+                                        const itemLabel = labelMatch ? labelMatch[1] : itemName;
+
+                                        if (itemName && !items.some(i => i.name === itemName)) {
                                             items.push({ name: itemName, label: itemLabel, file: subPath });
                                         }
                                     }
 
-                                    // Fallback generic pattern parser for simpler declarations if table pattern misses
-                                    if (items.length === 0 && isItemsFile) {
-                                        const simpleLineRegex = /\[['"]([a-zA-Z0-9_.-]+)['"]\]\s*=\s*\{[^}]*label\s*=\s*['"]([^'"]+)['"]/g;
-                                        let simpleMatch;
-                                        while ((simpleMatch = simpleLineRegex.exec(content)) !== null) {
-                                            if (!items.some(i => i.name === simpleMatch[1])) {
-                                                items.push({ name: simpleMatch[1], label: simpleMatch[2], file: subPath });
+                                    // Fallback if bracket notation style differs slightly in alternative core items.lua files
+                                    if (items.length === 0) {
+                                        const altRegex = /name\s*=\s*['"]([a-zA-Z0-9_.-]+)['"][^}]*label\s*=\s*['"]([^'"]+)['"]/g;
+                                        let altMatch;
+                                        while ((altMatch = altRegex.exec(content)) !== null) {
+                                            if (!items.some(i => i.name === altMatch[1])) {
+                                                items.push({ name: altMatch[1], label: altMatch[2], file: subPath });
                                             }
                                         }
                                     }
@@ -458,7 +466,7 @@
                 await scanHandle(dirHandle);
 
                 appendLog(`Scan complete. Found ${filesCount} script files.`);
-                appendLog(`Extracted ${triggers.length} triggers, ${webhooks.length} webhooks, and ${items.length} items.`);
+                appendLog(`Extracted ${triggers.length} triggers, ${webhooks.length} webhooks, and ${items.length} items from items.lua files.`);
 
                 // Update Stats
                 document.getElementById('statTriggers').innerText = `🎯 Triggers: ${triggers.length}`;
@@ -505,9 +513,9 @@
                     });
                 }
 
-                // Populate Items Table
+                // Populate Items Table strictly from items.lua
                 let itemTbody = document.getElementById('itemsTable');
-                itemTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No item definitions discovered in shared/items.lua.</td></tr>';
+                itemTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items.lua found or no items extracted.</td></tr>';
                 if (items.length > 0) {
                     itemTbody.innerHTML = '';
                     items.forEach(item => {
