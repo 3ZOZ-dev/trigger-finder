@@ -7,7 +7,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
         
         body {
-            /* Full visible custom background setup */
             background: url('background.jpg') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
@@ -20,12 +19,10 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            /* Lighter overlay configuration so the background stands out brightly */
             background-blend-mode: normal;
             background-color: rgba(5, 7, 12, 0.45);
         }
 
-        /* Auth Screen Overlay with Fixed Background Visibility */
         #authOverlay { 
             position: fixed; 
             top: 0; 
@@ -47,7 +44,6 @@
         .auth-card input { width: 100%; padding: 12px; background: rgba(5, 7, 12, 0.8); border: 1px solid #1e3a5f; border-radius: 6px; color: #fff; margin-bottom: 15px; text-align: center; font-size: 14px; }
         .auth-card input:focus { border-color: #00d2ff; outline: none; box-shadow: 0 0 10px rgba(0,210,255,0.3); }
 
-        /* Main Dashboard Container */
         #appContainer { display: none; flex-direction: column; height: 100vh; padding: 15px; backdrop-filter: blur(2px); }
         header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: rgba(12, 17, 28, 0.85); padding: 12px 20px; border-radius: 8px; border: 1px solid rgba(30, 58, 95, 0.6); }
         .title h1 { font-size: 18px; color: #ffffff; letter-spacing: 1.5px; font-weight: bold; }
@@ -149,7 +145,7 @@
 </head>
 <body>
 
-    <!-- KEYAUTH LOGIN OVERLAY (Background Fully Visible) -->
+    <!-- KEYAUTH LOGIN OVERLAY -->
     <div id="authOverlay">
         <div class="auth-card">
             <h2>🔐 3zbh SECURE AUTH</h2>
@@ -235,14 +231,14 @@
 
                 <!-- 3. ITEM FINDER VIEW -->
                 <div id="viewItems" class="view-section">
-                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Inventory Items (QB / ESX / Custom)</h3>
+                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Inventory Items (qb-core / shared / items.lua)</h3>
                     <div class="table-container">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Item Name / ID</th>
-                                    <th>Label</th>
-                                    <th>Source File / Config</th>
+                                    <th>Item Code / Name</th>
+                                    <th>Item Label</th>
+                                    <th>Source File Path</th>
                                 </tr>
                             </thead>
                             <tbody id="itemsTable">
@@ -426,12 +422,29 @@
                                     }
                                 });
 
-                                // 3. Item Finder Pattern Parsing (QB/ESX items definitions)
-                                const itemRegex = /['"]([a-z0-9_-]+)['"]\s*[:=]\s*\{[^}]*label\s*[:=]\s*['"]([^'"]+)['"]/gi;
-                                let itemMatch;
-                                while ((itemMatch = itemRegex.exec(content)) !== null) {
-                                    if (!items.some(i => i.name === itemMatch[1])) {
-                                        items.push({ name: itemMatch[1], label: itemMatch[2], file: subPath });
+                                // 3. Enhanced QBCore / ESX Items parser targeting shared/items.lua or table entries
+                                const isItemsFile = subPath.toLowerCase().includes('items.lua') || subPath.toLowerCase().includes('shared/items');
+                                if (isItemsFile || content.includes('[')) {
+                                    // Matches Lua table structures like: ['bread'] = { ['name'] = 'bread', ['label'] = 'Bread', ... } or similar configurations
+                                    const luaTableItemRegex = /['"]?([a-zA-Z0-9_.-]+)['"]?\s*=\s*\{\s*(?:\[?['"]?name['"]?\]?\s*=\s*['"]?([a-zA-Z0-9_.-]+['"]?))?[^}]*?['"]?label['"]?\s*=\s*['"]([^'"]+)['"]/g;
+                                    let matchItem;
+                                    while ((matchItem = luaTableItemRegex.exec(content)) !== null) {
+                                        const itemName = matchItem[2] || matchItem[1];
+                                        const itemLabel = matchItem[3];
+                                        if (itemName && itemLabel && !items.some(i => i.name === itemName)) {
+                                            items.push({ name: itemName, label: itemLabel, file: subPath });
+                                        }
+                                    }
+
+                                    // Fallback generic pattern parser for simpler declarations if table pattern misses
+                                    if (items.length === 0 && isItemsFile) {
+                                        const simpleLineRegex = /\[['"]([a-zA-Z0-9_.-]+)['"]\]\s*=\s*\{[^}]*label\s*=\s*['"]([^'"]+)['"]/g;
+                                        let simpleMatch;
+                                        while ((simpleMatch = simpleLineRegex.exec(content)) !== null) {
+                                            if (!items.some(i => i.name === simpleMatch[1])) {
+                                                items.push({ name: simpleMatch[1], label: simpleMatch[2], file: subPath });
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -494,10 +507,9 @@
 
                 // Populate Items Table
                 let itemTbody = document.getElementById('itemsTable');
-                itemTbody.innerHTML = '';
-                if (items.length === 0) {
-                    itemTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items definitions discovered.</td></tr>';
-                } else {
+                itemTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No item definitions discovered in shared/items.lua.</td></tr>';
+                if (items.length > 0) {
+                    itemTbody.innerHTML = '';
                     items.forEach(item => {
                         itemTbody.innerHTML += `<tr>
                             <td><code>${item.name}</code></td>
