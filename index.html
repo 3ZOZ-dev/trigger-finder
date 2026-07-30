@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>3zbh — Hyper-Optimized Trigger Finder Suite (100x)</title>
+    <title>Ducky — Advanced FiveM Suite</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
         
@@ -78,10 +78,11 @@
         }
         .sidebar label { font-size: 10px; font-weight: 800; color: #93c5fd; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
         
+        /* BLACK TABS */
         .btn {
-            background: rgba(18, 27, 45, 0.92);
-            color: #00d2ff;
-            border: 1px solid rgba(0, 210, 255, 0.5);
+            background: #000000;
+            color: #d1d5db;
+            border: 1px solid rgba(40, 60, 90, 0.8);
             padding: 11px;
             border-radius: 8px;
             font-weight: 700;
@@ -92,8 +93,8 @@
             letter-spacing: 0.8px;
             transition: all 0.25s ease;
         }
-        .btn:hover { background: rgba(0, 210, 255, 0.3); border-color: #00d2ff; color: #fff; box-shadow: 0 0 12px rgba(0,210,255,0.4); transform: translateY(-1px); }
-        .btn.active { background: rgba(0, 210, 255, 0.35); border-color: #00d2ff; color: #fff; box-shadow: 0 0 15px rgba(0,210,255,0.5); }
+        .btn:hover { background: #121620; border-color: #00d2ff; color: #fff; box-shadow: 0 0 10px rgba(0,210,255,0.25); transform: translateY(-1px); }
+        .btn.active { background: #000000; border-color: #00d2ff; color: #00d2ff; box-shadow: 0 0 12px rgba(0,210,255,0.35); }
 
         .search-box {
             width: 100%;
@@ -103,7 +104,6 @@
             border-radius: 8px;
             color: #fff;
             font-size: 12px;
-            margin-bottom: 5px;
             transition: all 0.3s;
         }
         .search-box:focus { border-color: #00d2ff; outline: none; box-shadow: 0 0 10px rgba(0,210,255,0.3); }
@@ -137,6 +137,55 @@
         .view-section { display: none; flex-direction: column; height: 100%; overflow: hidden; }
         .view-section.active { display: flex; }
 
+        /* Style modeled from reference image */
+        .results-header-box {
+            margin-bottom: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .results-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .results-meta {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        .filter-buttons-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+        .filter-btn {
+            background: #000000;
+            color: #d1d5db;
+            border: 1px solid rgba(50, 70, 100, 0.8);
+            padding: 7px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: none;
+            letter-spacing: 0.3px;
+        }
+        .filter-btn:hover {
+            background: #111827;
+            border-color: #00d2ff;
+            color: #fff;
+        }
+        .filter-btn.active {
+            background: #000000;
+            border-color: #00d2ff;
+            color: #00d2ff;
+            box-shadow: 0 0 8px rgba(0,210,255,0.3);
+        }
+
         .table-container { overflow-y: auto; flex: 1; margin-top: 10px; border: 1px solid rgba(22, 44, 74, 0.9); border-radius: 8px; background: rgba(5, 7, 12, 0.5); }
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid rgba(22, 44, 74, 0.6); font-size: 12px; }
@@ -160,7 +209,22 @@
             box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
         }
 
-        /* Custom Scrollbars for 100x look */
+        .settings-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+        }
+        .settings-group {
+            background: rgba(5, 7, 12, 0.7);
+            border: 1px solid rgba(30, 58, 95, 0.6);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .settings-group h4 { color: #00d2ff; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; }
+        .settings-group p { font-size: 12px; color: #93c5fd; margin-bottom: 10px; }
+
+        /* Custom Scrollbars */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: rgba(5, 7, 12, 0.5); border-radius: 4px; }
         ::-webkit-scrollbar-thumb { background: rgba(0, 210, 255, 0.4); border-radius: 4px; }
@@ -172,8 +236,8 @@
     <!-- KEYAUTH LOGIN OVERLAY -->
     <div id="authOverlay">
         <div class="auth-card">
-            <h2>🔐 3zbh SECURE AUTH</h2>
-            <p>Enter your license key to access 100x Suite</p>
+            <h2>🔐 DUCKY SECURE AUTH</h2>
+            <p>Enter your license key to access Ducky Suite</p>
             <input type="text" id="licenseKeyInput" placeholder="Enter License Key...">
             <button class="btn" style="width: 100%; margin-top: 5px;" onclick="keyAuthLogin()">Login & Launch</button>
             <p id="errorMsg" style="color: #ff4d4d; font-size: 11px; margin-top: 14px;"></p>
@@ -184,8 +248,8 @@
     <div id="appContainer">
         <header>
             <div class="title">
-                <h1>3zbh — ADVANCED FIVE-M SUITE (100x ULTRA)</h1>
-                <p>Protected by KeyAuth (3zbh) • Ultra High-Performance Parser Engine</p>
+                <h1>DUCKY — ADVANCED FIVEM SUITE</h1>
+                <p>Protected by KeyAuth • Ultra High-Performance Parser Engine</p>
             </div>
             <button class="btn" onclick="logout()" style="width: 100px; border-color: #ff4d4d; color: #ff4d4d;">LOGOUT</button>
         </header>
@@ -203,6 +267,7 @@
                 <button class="btn" id="navWebhooks" onclick="switchView('webhooks')">🔗 Webhook Finder</button>
                 <button class="btn" id="navItems" onclick="switchView('items')">📦 Item Finder</button>
                 <button class="btn" id="navLogs" onclick="switchView('logs')">📋 System Logs</button>
+                <button class="btn" id="navSettings" onclick="switchView('settings')">⚙️ Settings</button>
 
                 <label style="margin-top: 5px;">LIVE QUICK STATS</label>
                 <div class="stats-box">
@@ -216,9 +281,19 @@
             <div class="workspace">
                 <!-- 1. TRIGGER FINDER VIEW -->
                 <div id="viewTriggers" class="view-section active">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Server Triggers</h3>
-                        <input type="text" id="searchTriggers" class="search-box" style="width: 250px; margin: 0;" placeholder="Search triggers or resource..." onkeyup="filterTable('triggers')">
+                    <div class="results-header-box">
+                        <div class="results-title">Results</div>
+                        <div class="results-meta"><span id="metaScanned">0 files scanned</span> • <span id="metaMatches">0 matches found</span></div>
+                        <div class="filter-buttons-row">
+                            <button class="filter-btn active" id="filterBtnAll" onclick="setTriggerFilter('all', this)">All</button>
+                            <button class="filter-btn" id="filterBtnServer" onclick="setTriggerFilter('server', this)">Server Events</button>
+                            <button class="filter-btn" id="filterBtnClient" onclick="setTriggerFilter('client', this)">Client Events</button>
+                            <button class="filter-btn" id="filterBtnCoord" onclick="setTriggerFilter('coordinates', this)">Coordinates</button>
+                            <button class="filter-btn" id="filterBtnClear" onclick="clearTriggers()" style="margin-left: auto; border-color: #7f1d1d; color: #fca5a5;">Clear</button>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 8px;">
+                        <input type="text" id="searchTriggers" class="search-box" placeholder="Search triggers or resource..." onkeyup="filterTable('triggers')">
                     </div>
                     <div class="table-container">
                         <table>
@@ -239,7 +314,7 @@
 
                 <!-- 2. WEBHOOK FINDER VIEW -->
                 <div id="viewWebhooks" class="view-section">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                         <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Discord Webhooks</h3>
                         <input type="text" id="searchWebhooks" class="search-box" style="width: 250px; margin: 0;" placeholder="Search webhooks..." onkeyup="filterTable('webhooks')">
                     </div>
@@ -261,7 +336,7 @@
 
                 <!-- 3. ITEM FINDER VIEW -->
                 <div id="viewItems" class="view-section">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                         <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Items (Strictly from items.lua)</h3>
                         <input type="text" id="searchItems" class="search-box" style="width: 250px; margin: 0;" placeholder="Search items or labels..." onkeyup="filterTable('items')">
                     </div>
@@ -284,7 +359,24 @@
                 <!-- 4. SYSTEM LOGS VIEW -->
                 <div id="viewLogs" class="view-section">
                     <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Execution & Parser System Logs</h3>
-                    <div id="systemLogsContent" class="logs-box">[3zbh 100x System] Initialized successfully. Ready for high-speed dump execution...</div>
+                    <div id="systemLogsContent" class="logs-box">[Ducky System] Initialized successfully. Ready for high-speed dump execution...</div>
+                </div>
+
+                <!-- 5. SETTINGS VIEW -->
+                <div id="viewSettings" class="view-section">
+                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px;">Ducky Suite Settings</h3>
+                    <div class="settings-content">
+                        <div class="settings-group">
+                            <h4>Session Details</h4>
+                            <p>Authenticated via KeyAuth under license session control.</p>
+                            <button class="btn" style="width: 150px;" onclick="logout()">Deauthenticate</button>
+                        </div>
+                        <div class="settings-group">
+                            <h4>Parser Engine Options</h4>
+                            <p>Strict items.lua item extraction enabled. Auto anti-cheat signature scanning active.</p>
+                            <span style="font-family: monospace; font-size: 11px; color: #38bdf8;">Status: Operational (100x Mode)</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -295,10 +387,11 @@
         const KEYAUTH_OWNERID = "wyZfWBaylR";
         let sessionID = "";
 
-        // Global cache arrays for high-performance instant filtering
         let globalTriggers = [];
         let globalWebhooks = [];
         let globalItems = [];
+        let currentTriggerFilter = 'all';
+        let scannedFilesCount = 0;
 
         window.onload = async function() {
             if (sessionStorage.getItem("keyauth_verified") === "true") {
@@ -342,7 +435,7 @@
                 return;
             }
 
-            errorMsg.innerText = "Authenticating with 3zbh KeyAuth...";
+            errorMsg.innerText = "Authenticating with KeyAuth...";
 
             const formData = new FormData();
             formData.append("type", "license");
@@ -397,6 +490,9 @@
             } else if(viewName === 'logs') {
                 document.getElementById('viewLogs').classList.add('active');
                 document.getElementById('navLogs').classList.add('active');
+            } else if(viewName === 'settings') {
+                document.getElementById('viewSettings').classList.add('active');
+                document.getElementById('navSettings').classList.add('active');
             }
         }
 
@@ -415,7 +511,7 @@
                 globalTriggers = [];
                 globalWebhooks = [];
                 globalItems = [];
-                let filesCount = 0;
+                scannedFilesCount = 0;
                 let anticheats = [];
                 const acSignatures = ["fini", "reaper", "anticheat", "cronos", "easyanticheat", "lux"];
 
@@ -430,7 +526,7 @@
                             await scanHandle(subDirHandle, subPath);
                         } else if (entry.kind === 'file') {
                             if (/\.(lua|js|cs|ts|json)$/i.test(entry.name)) {
-                                filesCount++;
+                                scannedFilesCount++;
                                 const file = await entry.getFile();
                                 const content = await file.text();
                                 const resourceName = subPath.split('/')[0] || 'root';
@@ -444,26 +540,45 @@
                                     }
                                 }
 
-                                // 2. Trigger Extraction
+                                // 2. Trigger Extraction & Classification
                                 const trigRegex = /(?:TriggerServerEvent|emitNet|TriggerClientEvent|RegisterNetEvent)\s*\(\s*['"]([^'"]+)['"]/g;
                                 const lines = content.split('\n');
                                 lines.forEach((line, idx) => {
                                     let tMatch;
                                     while ((tMatch = trigRegex.exec(line)) !== null) {
+                                        const trigName = tMatch[1];
+                                        let type = 'server';
+                                        if (line.includes('TriggerClientEvent') || line.includes('Client')) {
+                                            type = 'client';
+                                        }
                                         globalTriggers.push({
                                             resource: resourceName,
-                                            trigger: tMatch[1],
+                                            trigger: trigName,
                                             snippet: line.trim(),
                                             file: subPath,
-                                            line: idx + 1
+                                            line: idx + 1,
+                                            type: type
                                         });
                                     }
                                 });
 
-                                // 3. STRICT ITEMS.LUA PARSER ONLY
+                                // 3. Coordinates Extraction check as pseudo-triggers or metadata if relevant
+                                const coordRegex = /vector3\s*\([^)]+\)/g;
+                                let cMatch;
+                                while ((cMatch = coordRegex.exec(content)) !== null) {
+                                    globalTriggers.push({
+                                        resource: resourceName,
+                                        trigger: cMatch[0],
+                                        snippet: cMatch[0],
+                                        file: subPath,
+                                        line: 0,
+                                        type: 'coordinates'
+                                    });
+                                }
+
+                                // 4. STRICT ITEMS.LUA PARSER ONLY
                                 const fileNameLower = entry.name.toLowerCase();
                                 if (fileNameLower === 'items.lua') {
-                                    appendLog(`Found items file: ${subPath}`);
                                     const itemEntryRegex = /\[['"]([a-zA-Z0-9_.-]+)['"]\]\s*=\s*\{([^}]*)\}/g;
                                     let matchItem;
                                     while ((matchItem = itemEntryRegex.exec(content)) !== null) {
@@ -492,19 +607,21 @@
                     }
                 }
 
-                appendLog("Starting comprehensive recursive folder parsing...");
-                document.getElementById('triggersTable').innerHTML = '<tr><td colspan="4" style="text-align: center; color: #00d2ff;">Scanning dump files with 100x acceleration... Please wait.</td></tr>';
+                appendLog("Starting Ducky folder scan...");
+                document.getElementById('triggersTable').innerHTML = '<tr><td colspan="4" style="text-align: center; color: #00d2ff;">Scanning dump files... Please wait.</td></tr>';
                 
                 await scanHandle(dirHandle);
 
-                appendLog(`Scan complete. Found ${filesCount} script files.`);
-                appendLog(`Extracted ${globalTriggers.length} triggers, ${globalWebhooks.length} webhooks, and ${globalItems.length} items from items.lua files.`);
+                appendLog(`Scan complete. Scanned ${scannedFilesCount} files, found ${globalTriggers.length} matches.`);
 
-                // Update Stats
+                // Update Stats & Meta Counters
                 document.getElementById('statTriggers').innerText = globalTriggers.length;
                 document.getElementById('statWebhooks').innerText = globalWebhooks.length;
                 document.getElementById('statItems').innerText = globalItems.length;
-                document.getElementById('statFiles').innerText = filesCount;
+                document.getElementById('statFiles').innerText = scannedFilesCount;
+
+                document.getElementById('metaScanned').innerText = `${scannedFilesCount} files scanned`;
+                document.getElementById('metaMatches').innerText = `${globalTriggers.length} matches found`;
 
                 if (anticheats.length > 0) {
                     document.getElementById('acName').innerText = anticheats.join(', ').toUpperCase();
@@ -522,71 +639,76 @@
             }
         }
 
-        function renderTables() {
-            // Triggers Table
+        function setTriggerFilter(filterType, btnElem) {
+            currentTriggerFilter = filterType;
+            document.querySelectorAll('.filter-buttons-row .filter-btn').forEach(b => {
+                if(b.id !== 'filterBtnClear') b.classList.remove('active');
+            });
+            if(btnElem && btnElem.id !== 'filterBtnClear') {
+                btnElem.classList.add('active');
+            }
+            renderTriggersTable();
+        }
+
+        function clearTriggers() {
+            globalTriggers = [];
+            document.getElementById('metaMatches').innerText = `0 matches found`;
+            document.getElementById('statTriggers').innerText = `0`;
+            renderTriggersTable();
+            appendLog("Triggers cleared by user command.");
+        }
+
+        function renderTriggersTable() {
             let trigTbody = document.getElementById('triggersTable');
-            trigTbody.innerHTML = '';
-            if (globalTriggers.length === 0) {
-                trigTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #93c5fd;">No triggers found in selected directory.</td></tr>';
-            } else {
-                globalTriggers.forEach(item => {
-                    trigTbody.innerHTML += `<tr>
-                        <td>${item.resource}</td>
-                        <td style="color: #00d2ff; font-weight: bold;">${item.trigger}</td>
-                        <td><code>${item.snippet}</code></td>
-                        <td>${item.file} (Line ${item.line})</td>
-                    </tr>`;
-                });
-            }
+            let query = document.getElementById('searchTriggers').value.toLowerCase();
+            
+            let filtered = globalTriggers.filter(item => {
+                let matchesSearch = item.trigger.toLowerCase().includes(query) || item.resource.toLowerCase().includes(query) || item.file.toLowerCase().includes(query);
+                if (!matchesSearch) return false;
 
-            // Webhooks Table
-            let whTbody = document.getElementById('webhooksTable');
-            whTbody.innerHTML = '';
-            if (globalWebhooks.length === 0) {
-                whTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No webhooks discovered.</td></tr>';
-            } else {
-                globalWebhooks.forEach(item => {
-                    whTbody.innerHTML += `<tr>
-                        <td>${item.resource}</td>
-                        <td><code>${item.url}</code></td>
-                        <td>${item.file}</td>
-                    </tr>`;
-                });
-            }
+                if (currentTriggerFilter === 'server') return item.type === 'server';
+                if (currentTriggerFilter === 'client') return item.type === 'client';
+                if (currentTriggerFilter === 'coordinates') return item.type === 'coordinates';
+                return true;
+            });
 
-            // Items Table
-            let itemTbody = document.getElementById('itemsTable');
-            itemTbody.innerHTML = '';
-            if (globalItems.length === 0) {
-                itemTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items.lua found or no items extracted.</td></tr>';
+            if (filtered.length === 0) {
+                trigTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #93c5fd;">No matching triggers found.</td></tr>';
             } else {
-                globalItems.forEach(item => {
-                    itemTbody.innerHTML += `<tr>
-                        <td><code>${item.name}</code></td>
-                        <td style="color: #38bdf8; font-weight: bold;">${item.label}</td>
-                        <td>${item.file}</td>
-                    </tr>`;
-                });
+                trigTbody.innerHTML = filtered.map(item => `<tr>
+                    <td>${item.resource}</td>
+                    <td style="color: #00d2ff; font-weight: bold;">${item.trigger}</td>
+                    <td><code>${item.snippet}</code></td>
+                    <td>${item.file}${item.line ? ' (Line ' + item.line + ')' : ''}</td>
+                </tr>`).join('');
             }
         }
 
+        function renderTables() {
+            renderTriggersTable();
+
+            // Webhooks Table
+            let whTbody = document.getElementById('webhooksTable');
+            whTbody.innerHTML = globalWebhooks.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No webhooks discovered.</td></tr>' :
+                globalWebhooks.map(item => `<tr><td>${item.resource}</td><td><code>${item.url}</code></td><td>${item.file}</td></tr>`).join('');
+
+            // Items Table
+            let itemTbody = document.getElementById('itemsTable');
+            itemTbody.innerHTML = globalItems.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items.lua found or no items extracted.</td></tr>' :
+                globalItems.map(item => `<tr><td><code>${item.name}</code></td><td style="color: #38bdf8; font-weight: bold;">${item.label}</td><td>${item.file}</td></tr>`).join('');
+        }
+
         function filterTable(type) {
-            let query = "";
-            let tbodyId = "";
             if(type === 'triggers') {
-                query = document.getElementById('searchTriggers').value.toLowerCase();
-                let trigTbody = document.getElementById('triggersTable');
-                let filtered = globalTriggers.filter(i => i.trigger.toLowerCase().includes(query) || i.resource.toLowerCase().includes(query) || i.file.toLowerCase().includes(query));
-                trigTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="4" style="text-align: center; color: #93c5fd;">No matching triggers found.</td></tr>' : 
-                    filtered.map(item => `<tr><td>${item.resource}</td><td style="color: #00d2ff; font-weight: bold;">${item.trigger}</td><td><code>${item.snippet}</code></td><td>${item.file} (Line ${item.line})</td></tr>`).join('');
+                renderTriggersTable();
             } else if(type === 'webhooks') {
-                query = document.getElementById('searchWebhooks').value.toLowerCase();
+                let query = document.getElementById('searchWebhooks').value.toLowerCase();
                 let whTbody = document.getElementById('webhooksTable');
                 let filtered = globalWebhooks.filter(i => i.url.toLowerCase().includes(query) || i.resource.toLowerCase().includes(query) || i.file.toLowerCase().includes(query));
                 whTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No matching webhooks found.</td></tr>' : 
                     filtered.map(item => `<tr><td>${item.resource}</td><td><code>${item.url}</code></td><td>${item.file}</td></tr>`).join('');
             } else if(type === 'items') {
-                query = document.getElementById('searchItems').value.toLowerCase();
+                let query = document.getElementById('searchItems').value.toLowerCase();
                 let itemTbody = document.getElementById('itemsTable');
                 let filtered = globalItems.filter(i => i.name.toLowerCase().includes(query) || i.label.toLowerCase().includes(query) || i.file.toLowerCase().includes(query));
                 itemTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No matching items found.</td></tr>' : 
