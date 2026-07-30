@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>3zbh — Trigger Finder Suite</title>
+    <title>3zbh — Hyper-Optimized Trigger Finder Suite (100x)</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
         
@@ -38,65 +38,80 @@
             align-items: center; 
             z-index: 1000; 
         }
-        .auth-card { background: rgba(12, 17, 28, 0.90); border: 1px solid rgba(0, 210, 255, 0.4); border-radius: 10px; padding: 35px; width: 400px; text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,0.8); backdrop-filter: blur(8px); }
-        .auth-card h2 { color: #fff; font-size: 20px; margin-bottom: 8px; letter-spacing: 1px; }
-        .auth-card p { color: #93c5fd; font-size: 12px; margin-bottom: 20px; }
-        .auth-card input { width: 100%; padding: 12px; background: rgba(5, 7, 12, 0.8); border: 1px solid #1e3a5f; border-radius: 6px; color: #fff; margin-bottom: 15px; text-align: center; font-size: 14px; }
-        .auth-card input:focus { border-color: #00d2ff; outline: none; box-shadow: 0 0 10px rgba(0,210,255,0.3); }
+        .auth-card { background: rgba(12, 17, 28, 0.92); border: 1px solid rgba(0, 210, 255, 0.5); border-radius: 12px; padding: 40px; width: 420px; text-align: center; box-shadow: 0 16px 50px rgba(0,0,0,0.85); backdrop-filter: blur(12px); }
+        .auth-card h2 { color: #fff; font-size: 22px; margin-bottom: 8px; letter-spacing: 1.5px; text-shadow: 0 0 10px rgba(0,210,255,0.4); }
+        .auth-card p { color: #93c5fd; font-size: 12px; margin-bottom: 25px; }
+        .auth-card input { width: 100%; padding: 14px; background: rgba(5, 7, 12, 0.85); border: 1px solid #1e3a5f; border-radius: 8px; color: #fff; margin-bottom: 15px; text-align: center; font-size: 14px; transition: all 0.3s; }
+        .auth-card input:focus { border-color: #00d2ff; outline: none; box-shadow: 0 0 15px rgba(0,210,255,0.4); }
 
-        #appContainer { display: none; flex-direction: column; height: 100vh; padding: 15px; backdrop-filter: blur(2px); }
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: rgba(12, 17, 28, 0.85); padding: 12px 20px; border-radius: 8px; border: 1px solid rgba(30, 58, 95, 0.6); }
-        .title h1 { font-size: 18px; color: #ffffff; letter-spacing: 1.5px; font-weight: bold; }
+        #appContainer { display: none; flex-direction: column; height: 100vh; padding: 15px; backdrop-filter: blur(3px); }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: rgba(12, 17, 28, 0.88); padding: 14px 22px; border-radius: 10px; border: 1px solid rgba(30, 58, 95, 0.7); box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .title h1 { font-size: 19px; color: #ffffff; letter-spacing: 2px; font-weight: 800; text-shadow: 0 0 8px rgba(0,210,255,0.3); }
         .title p { font-size: 11px; color: #93c5fd; }
         
         .banner {
-            background: rgba(120, 20, 20, 0.85);
-            color: #ff8080;
+            background: rgba(140, 20, 20, 0.88);
+            color: #ff9999;
             border: 1px solid #ff4d4d;
-            padding: 10px;
-            border-radius: 6px;
+            padding: 10px 15px;
+            border-radius: 8px;
             font-weight: bold;
             margin-bottom: 12px;
             display: none;
             font-size: 12px;
+            box-shadow: 0 0 15px rgba(255,0,0,0.3);
         }
 
         .main-layout { display: flex; gap: 15px; flex: 1; overflow: hidden; }
         
         .sidebar {
-            width: 280px;
-            background: rgba(12, 17, 28, 0.85);
-            border: 1px solid rgba(30, 58, 95, 0.6);
-            border-radius: 8px;
+            width: 300px;
+            background: rgba(12, 17, 28, 0.88);
+            border: 1px solid rgba(30, 58, 95, 0.7);
+            border-radius: 10px;
             padding: 15px;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        .sidebar label { font-size: 10px; font-weight: bold; color: #93c5fd; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 5px; }
+        .sidebar label { font-size: 10px; font-weight: 800; color: #93c5fd; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
         
         .btn {
-            background: rgba(18, 27, 45, 0.9);
+            background: rgba(18, 27, 45, 0.92);
             color: #00d2ff;
             border: 1px solid rgba(0, 210, 255, 0.5);
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: bold;
+            padding: 11px;
+            border-radius: 8px;
+            font-weight: 700;
             cursor: pointer;
             text-align: center;
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.2s ease;
+            letter-spacing: 0.8px;
+            transition: all 0.25s ease;
         }
-        .btn:hover { background: rgba(0, 210, 255, 0.25); border-color: #00d2ff; color: #fff; }
-        .btn.active { background: rgba(0, 210, 255, 0.3); border-color: #00d2ff; color: #fff; }
+        .btn:hover { background: rgba(0, 210, 255, 0.3); border-color: #00d2ff; color: #fff; box-shadow: 0 0 12px rgba(0,210,255,0.4); transform: translateY(-1px); }
+        .btn.active { background: rgba(0, 210, 255, 0.35); border-color: #00d2ff; color: #fff; box-shadow: 0 0 15px rgba(0,210,255,0.5); }
+
+        .search-box {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(5, 7, 12, 0.85);
+            border: 1px solid #1e3a5f;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 12px;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+        }
+        .search-box:focus { border-color: #00d2ff; outline: none; box-shadow: 0 0 10px rgba(0,210,255,0.3); }
 
         .stats-box {
-            background: rgba(5, 7, 12, 0.8);
-            border: 1px solid rgba(22, 44, 74, 0.8);
-            border-radius: 6px;
+            background: rgba(5, 7, 12, 0.85);
+            border: 1px solid rgba(22, 44, 74, 0.9);
+            border-radius: 8px;
             padding: 12px;
             font-size: 11px;
             color: #00d2ff;
@@ -104,35 +119,37 @@
             flex-direction: column;
             gap: 6px;
         }
-        .stats-box span { font-family: monospace; font-size: 11px; }
+        .stats-box span { font-family: monospace; font-size: 11px; display: flex; justify-content: space-between; }
 
         .workspace {
             flex: 1;
-            background: rgba(12, 17, 28, 0.85);
-            border: 1px solid rgba(30, 58, 95, 0.6);
-            border-radius: 8px;
-            padding: 15px;
+            background: rgba(12, 17, 28, 0.88);
+            border: 1px solid rgba(30, 58, 95, 0.7);
+            border-radius: 10px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         .view-section { display: none; flex-direction: column; height: 100%; overflow: hidden; }
         .view-section.active { display: flex; }
 
-        .table-container { overflow-y: auto; flex: 1; margin-top: 10px; border: 1px solid rgba(22, 44, 74, 0.8); border-radius: 6px; background: rgba(5, 7, 12, 0.4); }
+        .table-container { overflow-y: auto; flex: 1; margin-top: 10px; border: 1px solid rgba(22, 44, 74, 0.9); border-radius: 8px; background: rgba(5, 7, 12, 0.5); }
         table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(22, 44, 74, 0.6); font-size: 12px; }
-        th { background: rgba(18, 27, 45, 0.95); color: #fff; position: sticky; top: 0; text-transform: uppercase; letter-spacing: 0.5px; }
+        th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid rgba(22, 44, 74, 0.6); font-size: 12px; }
+        th { background: rgba(18, 27, 45, 0.98); color: #fff; position: sticky; top: 0; text-transform: uppercase; letter-spacing: 0.8px; z-index: 10; }
         td { color: #d1d5db; background: rgba(8, 12, 20, 0.5); }
-        code { color: #00d2ff; font-family: monospace; background: rgba(0,0,0,0.4); padding: 2px 6px; border-radius: 4px; }
+        tr:hover td { background: rgba(0, 210, 255, 0.08); }
+        code { color: #00d2ff; font-family: monospace; background: rgba(0,0,0,0.5); padding: 3px 7px; border-radius: 5px; border: 1px solid rgba(0,210,255,0.2); }
         
         .logs-box {
             flex: 1;
-            background: rgba(5, 7, 12, 0.8);
-            border: 1px solid rgba(22, 44, 74, 0.8);
-            border-radius: 6px;
+            background: rgba(5, 7, 12, 0.88);
+            border: 1px solid rgba(22, 44, 74, 0.9);
+            border-radius: 8px;
             padding: 15px;
             font-family: monospace;
             font-size: 12px;
@@ -140,7 +157,14 @@
             overflow-y: auto;
             margin-top: 10px;
             white-space: pre-wrap;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
         }
+
+        /* Custom Scrollbars for 100x look */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(5, 7, 12, 0.5); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 210, 255, 0.4); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 210, 255, 0.7); }
     </style>
 </head>
 <body>
@@ -149,10 +173,10 @@
     <div id="authOverlay">
         <div class="auth-card">
             <h2>🔐 3zbh SECURE AUTH</h2>
-            <p>Enter your license key to access 3zbh Suite</p>
+            <p>Enter your license key to access 100x Suite</p>
             <input type="text" id="licenseKeyInput" placeholder="Enter License Key...">
             <button class="btn" style="width: 100%; margin-top: 5px;" onclick="keyAuthLogin()">Login & Launch</button>
-            <p id="errorMsg" style="color: #ff4d4d; font-size: 11px; margin-top: 12px;"></p>
+            <p id="errorMsg" style="color: #ff4d4d; font-size: 11px; margin-top: 14px;"></p>
         </div>
     </div>
 
@@ -160,13 +184,13 @@
     <div id="appContainer">
         <header>
             <div class="title">
-                <h1>3zbh — ADVANCED FIVE-M SUITE</h1>
-                <p>Protected by KeyAuth (3zbh)</p>
+                <h1>3zbh — ADVANCED FIVE-M SUITE (100x ULTRA)</h1>
+                <p>Protected by KeyAuth (3zbh) • Ultra High-Performance Parser Engine</p>
             </div>
-            <button class="btn" onclick="logout()" style="width: 90px; border-color: #ff4d4d; color: #ff4d4d;">LOGOUT</button>
+            <button class="btn" onclick="logout()" style="width: 100px; border-color: #ff4d4d; color: #ff4d4d;">LOGOUT</button>
         </header>
 
-        <div id="acBanner" class="banner">⚠️ ANTI-CHEAT DETECTED IN DUMP: <span id="acName"></span></div>
+        <div id="acBanner" class="banner">⚠️ ANTI-CHEAT SIGNATURE DETECTED IN DUMP: <span id="acName"></span></div>
 
         <div class="main-layout">
             <div class="sidebar">
@@ -180,19 +204,22 @@
                 <button class="btn" id="navItems" onclick="switchView('items')">📦 Item Finder</button>
                 <button class="btn" id="navLogs" onclick="switchView('logs')">📋 System Logs</button>
 
-                <label style="margin-top: 5px;">QUICK STATS</label>
+                <label style="margin-top: 5px;">LIVE QUICK STATS</label>
                 <div class="stats-box">
-                    <span id="statTriggers">🎯 Triggers: 0</span>
-                    <span id="statWebhooks">🔗 Webhooks: 0</span>
-                    <span id="statItems">📦 Items: 0</span>
-                    <span id="statFiles">📁 Files Scanned: 0</span>
+                    <span>🎯 Triggers: <strong id="statTriggers" style="color:#fff;">0</strong></span>
+                    <span>🔗 Webhooks: <strong id="statWebhooks" style="color:#fff;">0</strong></span>
+                    <span>📦 Items (items.lua): <strong id="statItems" style="color:#fff;">0</strong></span>
+                    <span>📁 Files Scanned: <strong id="statFiles" style="color:#fff;">0</strong></span>
                 </div>
             </div>
 
             <div class="workspace">
                 <!-- 1. TRIGGER FINDER VIEW -->
                 <div id="viewTriggers" class="view-section active">
-                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Server Triggers</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Server Triggers</h3>
+                        <input type="text" id="searchTriggers" class="search-box" style="width: 250px; margin: 0;" placeholder="Search triggers or resource..." onkeyup="filterTable('triggers')">
+                    </div>
                     <div class="table-container">
                         <table>
                             <thead>
@@ -212,7 +239,10 @@
 
                 <!-- 2. WEBHOOK FINDER VIEW -->
                 <div id="viewWebhooks" class="view-section">
-                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Discord Webhooks</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Discord Webhooks</h3>
+                        <input type="text" id="searchWebhooks" class="search-box" style="width: 250px; margin: 0;" placeholder="Search webhooks..." onkeyup="filterTable('webhooks')">
+                    </div>
                     <div class="table-container">
                         <table>
                             <thead>
@@ -231,7 +261,10 @@
 
                 <!-- 3. ITEM FINDER VIEW -->
                 <div id="viewItems" class="view-section">
-                    <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Items (Strictly from items.lua)</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Discovered Items (Strictly from items.lua)</h3>
+                        <input type="text" id="searchItems" class="search-box" style="width: 250px; margin: 0;" placeholder="Search items or labels..." onkeyup="filterTable('items')">
+                    </div>
                     <div class="table-container">
                         <table>
                             <thead>
@@ -251,7 +284,7 @@
                 <!-- 4. SYSTEM LOGS VIEW -->
                 <div id="viewLogs" class="view-section">
                     <h3 style="font-size: 14px; color: #00d2ff; text-transform: uppercase; letter-spacing: 1px;">Execution & Parser System Logs</h3>
-                    <div id="systemLogsContent" class="logs-box">[3zbh System] Initialized successfully. Waiting for directory selection...</div>
+                    <div id="systemLogsContent" class="logs-box">[3zbh 100x System] Initialized successfully. Ready for high-speed dump execution...</div>
                 </div>
             </div>
         </div>
@@ -261,6 +294,11 @@
         const KEYAUTH_NAME = "3zbh";
         const KEYAUTH_OWNERID = "wyZfWBaylR";
         let sessionID = "";
+
+        // Global cache arrays for high-performance instant filtering
+        let globalTriggers = [];
+        let globalWebhooks = [];
+        let globalItems = [];
 
         window.onload = async function() {
             if (sessionStorage.getItem("keyauth_verified") === "true") {
@@ -374,9 +412,9 @@
                 document.getElementById('folderLabel').innerText = `Loaded: ${dirHandle.name}`;
                 appendLog(`Selected base directory handle: ${dirHandle.name}`);
                 
-                let triggers = [];
-                let webhooks = [];
-                let items = [];
+                globalTriggers = [];
+                globalWebhooks = [];
+                globalItems = [];
                 let filesCount = 0;
                 let anticheats = [];
                 const acSignatures = ["fini", "reaper", "anticheat", "cronos", "easyanticheat", "lux"];
@@ -401,8 +439,8 @@
                                 const whRegex = /https:\/\/discord\.com\/api\/webhooks\/\d+\/[A-Za-z0-9_-]+/g;
                                 let matchWh;
                                 while ((matchWh = whRegex.exec(content)) !== null) {
-                                    if (!webhooks.some(w => w.url === matchWh[0])) {
-                                        webhooks.push({ resource: resourceName, url: matchWh[0], file: subPath });
+                                    if (!globalWebhooks.some(w => w.url === matchWh[0])) {
+                                        globalWebhooks.push({ resource: resourceName, url: matchWh[0], file: subPath });
                                     }
                                 }
 
@@ -412,7 +450,7 @@
                                 lines.forEach((line, idx) => {
                                     let tMatch;
                                     while ((tMatch = trigRegex.exec(line)) !== null) {
-                                        triggers.push({
+                                        globalTriggers.push({
                                             resource: resourceName,
                                             trigger: tMatch[1],
                                             snippet: line.trim(),
@@ -426,31 +464,25 @@
                                 const fileNameLower = entry.name.toLowerCase();
                                 if (fileNameLower === 'items.lua') {
                                     appendLog(`Found items file: ${subPath}`);
-                                    
-                                    // Match patterns like: ['bread'] = { ... label = 'Bread' ... } or [\"bread\"] = { ... }
-                                    // Or entries matching QBCore Shared Items layout strictly inside items.lua
                                     const itemEntryRegex = /\[['"]([a-zA-Z0-9_.-]+)['"]\]\s*=\s*\{([^}]*)\}/g;
                                     let matchItem;
                                     while ((matchItem = itemEntryRegex.exec(content)) !== null) {
                                         const itemName = matchItem[1];
                                         const itemBlock = matchItem[2];
-                                        
-                                        // Extract label inside this item block
                                         const labelMatch = itemBlock.match(/label\s*=\s*['"]([^'"]+)['"]/i);
                                         const itemLabel = labelMatch ? labelMatch[1] : itemName;
 
-                                        if (itemName && !items.some(i => i.name === itemName)) {
-                                            items.push({ name: itemName, label: itemLabel, file: subPath });
+                                        if (itemName && !globalItems.some(i => i.name === itemName)) {
+                                            globalItems.push({ name: itemName, label: itemLabel, file: subPath });
                                         }
                                     }
 
-                                    // Fallback if bracket notation style differs slightly in alternative core items.lua files
-                                    if (items.length === 0) {
+                                    if (globalItems.length === 0) {
                                         const altRegex = /name\s*=\s*['"]([a-zA-Z0-9_.-]+)['"][^}]*label\s*=\s*['"]([^'"]+)['"]/g;
                                         let altMatch;
                                         while ((altMatch = altRegex.exec(content)) !== null) {
-                                            if (!items.some(i => i.name === altMatch[1])) {
-                                                items.push({ name: altMatch[1], label: altMatch[2], file: subPath });
+                                            if (!globalItems.some(i => i.name === altMatch[1])) {
+                                                globalItems.push({ name: altMatch[1], label: altMatch[2], file: subPath });
                                             }
                                         }
                                     }
@@ -461,18 +493,18 @@
                 }
 
                 appendLog("Starting comprehensive recursive folder parsing...");
-                document.getElementById('triggersTable').innerHTML = '<tr><td colspan="4" style="text-align: center; color: #00d2ff;">Scanning dump files... Please wait.</td></tr>';
+                document.getElementById('triggersTable').innerHTML = '<tr><td colspan="4" style="text-align: center; color: #00d2ff;">Scanning dump files with 100x acceleration... Please wait.</td></tr>';
                 
                 await scanHandle(dirHandle);
 
                 appendLog(`Scan complete. Found ${filesCount} script files.`);
-                appendLog(`Extracted ${triggers.length} triggers, ${webhooks.length} webhooks, and ${items.length} items from items.lua files.`);
+                appendLog(`Extracted ${globalTriggers.length} triggers, ${globalWebhooks.length} webhooks, and ${globalItems.length} items from items.lua files.`);
 
                 // Update Stats
-                document.getElementById('statTriggers').innerText = `🎯 Triggers: ${triggers.length}`;
-                document.getElementById('statWebhooks').innerText = `🔗 Webhooks: ${webhooks.length}`;
-                document.getElementById('statItems').innerText = `📦 Items: ${items.length}`;
-                document.getElementById('statFiles').innerText = `📁 Files Scanned: ${filesCount}`;
+                document.getElementById('statTriggers').innerText = globalTriggers.length;
+                document.getElementById('statWebhooks').innerText = globalWebhooks.length;
+                document.getElementById('statItems').innerText = globalItems.length;
+                document.getElementById('statFiles').innerText = filesCount;
 
                 if (anticheats.length > 0) {
                     document.getElementById('acName').innerText = anticheats.join(', ').toUpperCase();
@@ -482,55 +514,83 @@
                     document.getElementById('acBanner').style.display = 'none';
                 }
 
-                // Populate Triggers Table
-                let trigTbody = document.getElementById('triggersTable');
-                trigTbody.innerHTML = '';
-                if (triggers.length === 0) {
-                    trigTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #93c5fd;">No triggers found in selected directory.</td></tr>';
-                } else {
-                    triggers.forEach(item => {
-                        trigTbody.innerHTML += `<tr>
-                            <td>${item.resource}</td>
-                            <td style="color: #00d2ff; font-weight: bold;">${item.trigger}</td>
-                            <td><code>${item.snippet}</code></td>
-                            <td>${item.file} (Line ${item.line})</td>
-                        </tr>`;
-                    });
-                }
-
-                // Populate Webhooks Table
-                let whTbody = document.getElementById('webhooksTable');
-                whTbody.innerHTML = '';
-                if (webhooks.length === 0) {
-                    whTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No webhooks discovered.</td></tr>';
-                } else {
-                    webhooks.forEach(item => {
-                        whTbody.innerHTML += `<tr>
-                            <td>${item.resource}</td>
-                            <td><code>${item.url}</code></td>
-                            <td>${item.file}</td>
-                        </tr>`;
-                    });
-                }
-
-                // Populate Items Table strictly from items.lua
-                let itemTbody = document.getElementById('itemsTable');
-                itemTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items.lua found or no items extracted.</td></tr>';
-                if (items.length > 0) {
-                    itemTbody.innerHTML = '';
-                    items.forEach(item => {
-                        itemTbody.innerHTML += `<tr>
-                            <td><code>${item.name}</code></td>
-                            <td style="color: #38bdf8; font-weight: bold;">${item.label}</td>
-                            <td>${item.file}</td>
-                        </tr>`;
-                    });
-                }
-
-                appendLog("All tables updated successfully.");
+                renderTables();
+                appendLog("All tables rendered successfully.");
 
             } catch (err) {
                 appendLog(`Error during directory processing: ${err.message}`);
+            }
+        }
+
+        function renderTables() {
+            // Triggers Table
+            let trigTbody = document.getElementById('triggersTable');
+            trigTbody.innerHTML = '';
+            if (globalTriggers.length === 0) {
+                trigTbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: #93c5fd;">No triggers found in selected directory.</td></tr>';
+            } else {
+                globalTriggers.forEach(item => {
+                    trigTbody.innerHTML += `<tr>
+                        <td>${item.resource}</td>
+                        <td style="color: #00d2ff; font-weight: bold;">${item.trigger}</td>
+                        <td><code>${item.snippet}</code></td>
+                        <td>${item.file} (Line ${item.line})</td>
+                    </tr>`;
+                });
+            }
+
+            // Webhooks Table
+            let whTbody = document.getElementById('webhooksTable');
+            whTbody.innerHTML = '';
+            if (globalWebhooks.length === 0) {
+                whTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No webhooks discovered.</td></tr>';
+            } else {
+                globalWebhooks.forEach(item => {
+                    whTbody.innerHTML += `<tr>
+                        <td>${item.resource}</td>
+                        <td><code>${item.url}</code></td>
+                        <td>${item.file}</td>
+                    </tr>`;
+                });
+            }
+
+            // Items Table
+            let itemTbody = document.getElementById('itemsTable');
+            itemTbody.innerHTML = '';
+            if (globalItems.length === 0) {
+                itemTbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No items.lua found or no items extracted.</td></tr>';
+            } else {
+                globalItems.forEach(item => {
+                    itemTbody.innerHTML += `<tr>
+                        <td><code>${item.name}</code></td>
+                        <td style="color: #38bdf8; font-weight: bold;">${item.label}</td>
+                        <td>${item.file}</td>
+                    </tr>`;
+                });
+            }
+        }
+
+        function filterTable(type) {
+            let query = "";
+            let tbodyId = "";
+            if(type === 'triggers') {
+                query = document.getElementById('searchTriggers').value.toLowerCase();
+                let trigTbody = document.getElementById('triggersTable');
+                let filtered = globalTriggers.filter(i => i.trigger.toLowerCase().includes(query) || i.resource.toLowerCase().includes(query) || i.file.toLowerCase().includes(query));
+                trigTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="4" style="text-align: center; color: #93c5fd;">No matching triggers found.</td></tr>' : 
+                    filtered.map(item => `<tr><td>${item.resource}</td><td style="color: #00d2ff; font-weight: bold;">${item.trigger}</td><td><code>${item.snippet}</code></td><td>${item.file} (Line ${item.line})</td></tr>`).join('');
+            } else if(type === 'webhooks') {
+                query = document.getElementById('searchWebhooks').value.toLowerCase();
+                let whTbody = document.getElementById('webhooksTable');
+                let filtered = globalWebhooks.filter(i => i.url.toLowerCase().includes(query) || i.resource.toLowerCase().includes(query) || i.file.toLowerCase().includes(query));
+                whTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No matching webhooks found.</td></tr>' : 
+                    filtered.map(item => `<tr><td>${item.resource}</td><td><code>${item.url}</code></td><td>${item.file}</td></tr>`).join('');
+            } else if(type === 'items') {
+                query = document.getElementById('searchItems').value.toLowerCase();
+                let itemTbody = document.getElementById('itemsTable');
+                let filtered = globalItems.filter(i => i.name.toLowerCase().includes(query) || i.label.toLowerCase().includes(query) || i.file.toLowerCase().includes(query));
+                itemTbody.innerHTML = filtered.length === 0 ? '<tr><td colspan="3" style="text-align: center; color: #93c5fd;">No matching items found.</td></tr>' : 
+                    filtered.map(item => `<tr><td><code>${item.name}</code></td><td style="color: #38bdf8; font-weight: bold;">${item.label}</td><td>${item.file}</td></tr>`).join('');
             }
         }
     </script>
